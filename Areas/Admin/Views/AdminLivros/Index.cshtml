@@ -1,0 +1,82 @@
+@model ReflectionIT.Mvc.Paging.PagingList<projeto_livraria.Models.Livro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Livros</h3>
+
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="filtro"
+           value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Procurar
+    </button>
+</form>
+
+Total de Livros : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+<p>
+    <a href="https://localhost:5001/Admin/AdminLivros/Create" class="btn btn-outline" asp-action="Create">Adicionar novo Livro</a>
+</p>
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+             <thead>
+                <tr>
+                    <th>
+                        @* @Html.SortableHeaderFor(model => model.Titulo, "Titulo")  *@
+                        @* @Html.DisplayNameFor(model => model.Titulo) *@
+                    </th>
+                    @* <th>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </th> *@
+                    @* <th>
+                        @Html.DisplayNameFor(model => model.Preco)
+                    </th> *@
+                    @* <th>
+                        @Html.DisplayNameFor(model => model.Autor)
+                    </th> *@
+                    @* <th>
+                        @Html.DisplayNameFor(model => model.Editora)
+                    </th> *@
+                    <th></th>
+                </tr>
+            </thead> 
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Autor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Editora)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ano)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" href="/Admin/AdminLivros/Edit/5" asp-route-id="@item.IdLivro">Edita</a> |
+                            <a asp-action="Details" href="/Admin/AdminLivros/Details/5" asp-route-id="@item.IdLivro">Detalhes</a> |
+                            <a asp-action="Delete" href="/Admin/AdminLivros/Delete/5" asp-route-id="@item.IdLivro">Deleta</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <vc:pager paging-list="@Model"></vc:pager>
+        </div>
+
+    </div>
+</div>

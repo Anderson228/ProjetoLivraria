@@ -1,0 +1,41 @@
+@model projeto_livraria.Models.Livro;
+@{
+    ViewData["Title"] = "Details";
+}
+<h3>Detalhes</h3>
+<div>
+    <form asp-action="Details" role="form">
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-3">
+                @Html.DisplayNameFor(model => model.Titulo)
+            </dt>
+            <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
+            <dt class = "col-sm-3">
+                @Html.DisplayNameFor(model => model.Editora)
+            </dt>
+            <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Editora)
+            </dd>
+            <dt class = "col-sm-3">
+                @Html.DisplayNameFor(model => model.Ano)
+            </dt>
+             <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Ano)
+            </dd>
+            <dt class = "col-sm-3">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+             <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+        </dl>
+    </form>    
+</div>
+<hr />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdLivro">Editar</a> |
+    <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
+</div>
